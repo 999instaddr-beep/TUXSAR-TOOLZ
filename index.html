@@ -143,7 +143,7 @@ $('rep').onchange=e=>{addFiles(e.target.files,repIdx);e.target.value=''};
 // items
 function cats(){const c=$('cats');c.innerHTML='';CATS.forEach(([k,e,t])=>{const w=document.createElement('div');w.innerHTML=`<div class="sub">${e} ${t}</div><div class="chips"></div><input placeholder="Type item name + Enter">`;const ch=w.querySelector('.chips');cur.d[k].forEach((v,i)=>{const s=document.createElement('div');s.className='chip';s.textContent=v;const x=document.createElement('span');x.textContent='✖';x.onclick=()=>{cur.d[k].splice(i,1);persist();cats()};s.append(x);ch.append(s)});w.querySelector('input').onkeydown=ev=>{if(ev.key=='Enter'&&ev.target.value.trim()){cur.d[k].push(ev.target.value.trim());persist();cats()}};c.append(w)})}
 // AI — calls the private Render backend. Set the URL after deploying it.
-const AI_API_URL = "PASTE_YOUR_RENDER_SERVICE_URL_HERE";
+const AI_API_URL = "https://tuxsar-ai-backend.onrender.com";
 async function ai(){
 if(!cur.imgs.length)return toast('Upload screenshots first',1);
 if(!AI_API_URL.startsWith('https://'))return toast('Add your Render URL in AI_API_URL first.',1);
