@@ -80,7 +80,7 @@ input,textarea{border-radius:11px;background:#08080e;font-size:16px}
 <div style="display:flex;gap:8px;flex:1 1 260px;max-width:360px"><input id="q" type="number" min="1" max="100" placeholder="Search account number"><button id="go" class="pri">Go</button></div></div>
 
 <div id="home">
-<details class="card guide"><summary>📘 Full guide: how to use & publish</summary><ol><li><b>Add account:</b> tap ➕ NEW ACCOUNT.</li><li><b>Upload:</b> tap the green box and pick up to 100 screenshots (JPG/PNG/WEBP).</li><li><b>Analyze:</b> tap 🤖 ANALYZE. Allow Claude access when asked. Fix or add items by typing them.</li><li><b>Contact:</b> fill your name, number and link once in step 3. They are remembered for every account.</li><li><b>Price:</b> type the price, add an exchange line if you want, tap 🔄 Regenerate.</li><li><b>Copy:</b> tap 📋 COPY DESCRIPTION, then paste in WhatsApp/Telegram. Tap 💾 Save account to keep it.</li><li><b>Publish this website:</b> open the page in Claude, tap <b>Share</b>, choose who can open it and copy the link. Until you share, only you can see it.</li><li><b>Use like an app:</b> open the link in Chrome, tap ⋮ then <b>Add to Home screen</b>.</li><li><b>Good to know:</b> accounts and photos are saved in this browser on this device only, so they do not appear on other phones. AI analysis needs a signed-in Claude user. Others can still type items manually.</li></ol></details><div class="card"><b>👋 How to use:</b> <span class="sub">1) Tap ➕ NEW ACCOUNT. 2) Upload screenshots. 3) Tap <b>Analyze</b>. 4) Edit, then tap <b>COPY DESCRIPTION</b>.</span>
+<details class="card guide"><summary>📘 Full guide: how to use & publish</summary><ol><li><b>Add account:</b> tap ➕ NEW ACCOUNT.</li><li><b>Upload:</b> tap the green box and pick up to 100 screenshots (JPG/PNG/WEBP).</li><li><b>Analyze:</b> tap 🤖 ANALYZE after the Render backend is connected. Fix or add items by typing them.</li><li><b>Contact:</b> fill your name, number and link once in step 3. They are remembered for every account.</li><li><b>Price:</b> type the price, add an exchange line if you want, tap 🔄 Regenerate.</li><li><b>Copy:</b> tap 📋 COPY DESCRIPTION, then paste in WhatsApp/Telegram. Tap 💾 Save account to keep it.</li><li><b>Publish this website:</b> open the page in Claude, tap <b>Share</b>, choose who can open it and copy the link. Until you share, only you can see it.</li><li><b>Use like an app:</b> open the link in Chrome, tap ⋮ then <b>Add to Home screen</b>.</li><li><b>Good to know:</b> accounts and photos are saved in this browser on this device only, so they do not appear on other phones. AI analysis needs the Render backend URL configured by the site owner. Others can still type items manually.</li></ol></details><div class="card"><b>👋 How to use:</b> <span class="sub">1) Tap ➕ NEW ACCOUNT. 2) Upload screenshots. 3) Tap <b>Analyze</b>. 4) Edit, then tap <b>COPY DESCRIPTION</b>.</span>
 <div class="st" id="stats"></div></div>
 <button id="newacc" class="pri big" style="margin:0 0 12px">➕ NEW ACCOUNT</button><div class="grid" id="grid"></div></div>
 
@@ -142,19 +142,52 @@ $('rep').onchange=e=>{addFiles(e.target.files,repIdx);e.target.value=''};
 ['dragover','drop'].forEach(v=>$('drop').addEventListener(v,e=>{e.preventDefault();if(v=='drop')addFiles(e.dataTransfer.files)}));
 // items
 function cats(){const c=$('cats');c.innerHTML='';CATS.forEach(([k,e,t])=>{const w=document.createElement('div');w.innerHTML=`<div class="sub">${e} ${t}</div><div class="chips"></div><input placeholder="Type item name + Enter">`;const ch=w.querySelector('.chips');cur.d[k].forEach((v,i)=>{const s=document.createElement('div');s.className='chip';s.textContent=v;const x=document.createElement('span');x.textContent='✖';x.onclick=()=>{cur.d[k].splice(i,1);persist();cats()};s.append(x);ch.append(s)});w.querySelector('input').onkeydown=ev=>{if(ev.key=='Enter'&&ev.target.value.trim()){cur.d[k].push(ev.target.value.trim());persist();cats()}};c.append(w)})}
-// AI
-async function ai(){if(!cur.imgs.length)return toast('Upload screenshots first',1);
-if(!sample)return toast('AI is not available here. Please enter items manually below.',1);
-const lim=await sample.limits().catch(()=>null);if(!lim||!lim.images)return toast('AI image analysis unavailable. Use manual entry.',1);
-const per=Math.min(lim.images.maxCount||6,6),btn=$('an');btn.disabled=true;
-const P=`You analyze Free Fire (Garena) account screenshots. Only report items you can CLEARLY SEE in these images. Never guess or invent. If unsure, leave it out. Reply ONLY JSON: {"level":"account level number or empty","prime":"prime level number or empty","vault":"vault collection number or empty","bundles":[],"guns":[],"evo":["name + level e.g. Evo M1887 Lv.7"],"emotes":[],"rare":[],"vehicles":[],"other":[]} Use short item names.`;
-try{let all=[];for(let i=0;i<cur.imgs.length;i+=per){$('anmsg').textContent=`Analyzing images ${i+1}-${Math.min(i+per,cur.imgs.length)} of ${cur.imgs.length}...`;
-const bl=await Promise.all(cur.imgs.slice(i,i+per).map(u=>fetch(u).then(r=>r.blob())));
-all.push(await sample.json(P,{images:bl,cache:false,modelTier:'default'}))}
-const d=cur.d;all.forEach(r=>{if(!r)return;['level','prime','vault'].forEach(k=>{if(r[k]&&!d[k])d[k]=String(r[k])});CATS.forEach(([k])=>(r[k]||[]).forEach(v=>{v=String(v).trim();if(v&&!d[k].some(x=>x.toLowerCase()==v.toLowerCase()))d[k].push(v)}))});
-persist();fill();build();$('anmsg').textContent='✅ Done! Check the items below and fix anything wrong.';toast('Analysis complete ✅')}
-catch(e){const c=e&&e.code;$('anmsg').textContent='';toast(c=='not_granted'?'AI permission was denied. Use manual entry.':c=='rate_limited'?'Too many requests, wait a minute.':'Analysis failed: '+(e.message||'error')+'. Try fewer screenshots or enter manually.',1)}
-btn.disabled=false}
+// AI — calls the private Render backend. Set the URL after deploying it.
+const AI_API_URL = "PASTE_YOUR_RENDER_SERVICE_URL_HERE";
+async function ai(){
+if(!cur.imgs.length)return toast('Upload screenshots first',1);
+if(!AI_API_URL.startsWith('https://'))return toast('Add your Render URL in AI_API_URL first.',1);
+const btn=$('an');btn.disabled=true;
+const P=`Analyze these Free Fire (Garena) account screenshots. Only report items clearly visible. Never guess or invent. Return ONLY valid JSON with this exact structure: {"level":"","prime":"","vault":"","bundles":[],"guns":[],"evo":[],"emotes":[],"rare":[],"vehicles":[],"other":[]}. Use short item names. For EVO items include visible level when readable.`;
+try{
+let all=[];
+for(let i=0;i<cur.imgs.length;i+=3){
+$('anmsg').textContent=`Analyzing images ${i+1}-${Math.min(i+3,cur.imgs.length)} of ${cur.imgs.length}...`;
+const images=cur.imgs.slice(i,i+3).map(dataUrl=>{
+const parts=dataUrl.split(',');
+const mime=(parts[0].match(/data:(.*?);base64/)||[])[1]||'image/jpeg';
+return {mimeType:mime,data:parts[1]};
+});
+const response=await fetch(AI_API_URL.replace(/\/$/,'')+'/analyze',{
+method:'POST',headers:{'Content-Type':'application/json'},
+body:JSON.stringify({prompt:P,images})
+});
+const result=await response.json();
+if(!response.ok)throw new Error(result.error||'Backend request failed');
+let parsed=result.result;
+if(typeof parsed==='string'){
+parsed=parsed.replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');
+parsed=JSON.parse(parsed);
+}
+all.push(parsed);
+}
+const d=cur.d;
+all.forEach(r=>{
+if(!r)return;
+['level','prime','vault'].forEach(k=>{if(r[k]&&!d[k])d[k]=String(r[k])});
+CATS.forEach(([k])=>(Array.isArray(r[k])?r[k]:[]).forEach(v=>{
+v=String(v).trim();
+if(v&&!d[k].some(x=>x.toLowerCase()===v.toLowerCase()))d[k].push(v);
+}));
+});
+persist();fill();build();
+$('anmsg').textContent='✅ Done! Check the items below and fix anything wrong.';
+toast('Analysis complete ✅');
+}catch(e){
+$('anmsg').textContent='';
+toast('Analysis failed: '+(e.message||'Please try again.'),1);
+}finally{btn.disabled=false;}
+}
 $('an').onclick=ai;
 // description
 function build(){persist();const d=cur.d,L=[cur.heading.trim()||'👀 CHECK OUT ✅ ALL SCREENSHOTS'];
