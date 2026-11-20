@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>TUXSAR TOOLZ 🔥</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#07070b;--card:#12121b;--line:#2a2a3d;--g:#39ff14;--p:#a855f7;--t:#e8e8f2;--m:#8b8ba3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{color-scheme:dark}
+body{margin:0;background:radial-gradient(circle at 80% -10%,#2a0f4a 0,transparent 45%),radial-gradient(circle at 0 0,#0b3a0b 0,transparent 35%),var(--bg);color:var(--t);font:15px/1.45 system-ui,Segoe UI,Roboto,sans-serif;min-height:100vh}
+.w{max-width:1000px;margin:auto;padding:14px}
+h1{margin:0;font-size:26px;letter-spacing:2px;background:linear-gradient(90deg,var(--g),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--m);font-size:13px}
+.top{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+input,textarea,select{width:100%;background:#0b0b12;color:var(--t);border:1px solid var(--line);border-radius:10px;padding:10px;font:inherit}
+input:focus,textarea:focus{outline:none;border-color:var(--g);box-shadow:0 0 8px #39ff1455}
+textarea{resize:vertical;min-height:110px}
+button{cursor:pointer;border:1px solid var(--p);background:#1b1030;color:var(--t);border-radius:10px;padding:10px 14px;font:600 14px inherit;font-family:inherit}
+button:hover{box-shadow:0 0 10px #a855f788}
+.pri{background:linear-gradient(90deg,#22c55e,var(--g));color:#031203;border:0;box-shadow:0 0 14px #39ff1466}
+.big{width:100%;font-size:18px;padding:16px;margin-top:8px}
+.dng{border-color:#ef4444;color:#fca5a5;background:#2a0a0a}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.ac{padding:10px 4px;text-align:center;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer;position:relative}
+.ac b{display:block;font-size:13px}.ac small{color:var(--m);font-size:11px}
+.ac.has{border-color:var(--p)}.ac.sv{border-color:var(--g);box-shadow:0 0 8px #39ff1433}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.row>*{flex:1 1 140px}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-top:10px}
+.th{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.th img{width:100%;height:100%;object-fit:cover}
+.th div{position:absolute;bottom:0;left:0;right:0;display:flex;background:#000b}
+.th button{flex:1;padding:6px 0;border:0;border-radius:0;background:none;font-size:12px}
+.drop{border:2px dashed var(--g);border-radius:14px;padding:22px;text-align:center;cursor:pointer;color:var(--g)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.chip{background:#1b1030;border:1px solid var(--p);border-radius:20px;padding:3px 10px;font-size:13px}
+.chip span{cursor:pointer;color:#f87171;margin-left:6px}
+h3{margin:4px 0 8px;font-size:15px;color:var(--g)}
+.bar{height:8px;background:#0b0b12;border-radius:8px;overflow:hidden;margin-top:8px;display:none}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--g));transition:width .3s}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#111;border:1px solid var(--g);padding:10px 16px;border-radius:10px;display:none;z-index:9;max-width:90%}
+#toast.err{border-color:#ef4444}
+.st{font-size:13px;color:var(--m);margin-top:6px}
+#out{min-height:300px;font-size:16px;line-height:1.7}
+.hide{display:none!important}.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}.th label{flex:1;text-align:center;padding:6px 0;font-size:12px;cursor:pointer}
+body{background:linear-gradient(rgba(57,255,20,.035) 1px,transparent 1px) 0 0/100% 38px,radial-gradient(circle at 85% -10%,#34125c 0,transparent 45%),radial-gradient(circle at -5% 5%,#0d4a0d 0,transparent 38%),#06060a;background-attachment:fixed;letter-spacing:.1px}
+::selection{background:var(--g);color:#000}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:#33334d;border-radius:8px}
+.hd{position:sticky;top:0;z-index:5;margin:-14px -14px 14px;padding:12px 14px;background:rgba(7,7,11,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font:900 18px system-ui;color:#04110a;background:linear-gradient(135deg,var(--g),var(--p));box-shadow:0 0 18px #39ff1455,0 0 28px #a855f744;letter-spacing:1px}
+h1{font-size:24px;font-weight:900;line-height:1.1;filter:drop-shadow(0 0 10px #39ff1444)}
+.card{background:linear-gradient(180deg,#161624,#101019);border:1px solid #2b2b42;box-shadow:0 8px 24px #0008,inset 0 1px 0 #ffffff0d;border-radius:16px;padding:16px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,var(--g),var(--p),transparent)}
+h3{font-size:16px;letter-spacing:.5px;padding-bottom:8px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+button,label.drop,.th label{transition:transform .12s,box-shadow .2s,border-color .2s;min-height:42px}
+button:active{transform:scale(.97)}
+button{border-radius:11px;background:linear-gradient(180deg,#24143f,#170d2b)}
+button:hover{border-color:var(--g)}
+.pri{background:linear-gradient(90deg,#16c553,var(--g));font-weight:800;letter-spacing:.5px}
+.pri:hover{box-shadow:0 0 22px #39ff1499}
+#copy{font-size:19px;padding:18px;animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 12px #39ff1466}50%{box-shadow:0 0 28px #39ff14cc}}
+#an{background:linear-gradient(90deg,#7c3aed,var(--p) 50%,#c084fc);color:#fff;box-shadow:0 0 16px #a855f777}
+#an:disabled{opacity:.6;animation:pulse 1.2s infinite}
+.drop{background:linear-gradient(180deg,#0f1f0f,#0a120a);border-radius:16px;padding:30px 14px;font-weight:700;font-size:16px;transition:.2s}
+.drop:hover{background:#12260f;box-shadow:0 0 22px #39ff1433}
+.drop small{color:var(--m);font-weight:400}
+.ac{border-radius:14px;padding:14px 4px;transition:transform .15s,box-shadow .2s;background:linear-gradient(180deg,#171726,#10101a)}
+.ac:hover{transform:translateY(-3px);box-shadow:0 6px 18px #a855f744;border-color:var(--p)}
+.ac b{font-size:14px;color:#fff}.ac.sv b{color:var(--g)}
+#stats{display:inline-block;margin-top:10px;padding:5px 12px;border:1px solid var(--line);border-radius:20px;background:#0b0b12;color:var(--g)}
+.th{box-shadow:0 4px 12px #0008;transition:transform .15s}.th:hover{transform:scale(1.03);border-color:var(--p)}
+.chip{background:linear-gradient(90deg,#1d1236,#132a16);border-color:#5b3a9a}
+input,textarea{border-radius:11px;background:#08080e;font-size:16px}
+#out{background:#0a120c;border-color:#1f5a1c;font-family:inherit;white-space:pre-wrap;line-height:1.75;box-shadow:inset 0 0 18px #39ff1410}
+#toast{background:rgba(10,10,16,.92);backdrop-filter:blur(8px);box-shadow:0 0 20px #39ff1444;font-weight:600}
+#toast.err{box-shadow:0 0 20px #ef444455}
+.bar{height:10px;border:1px solid var(--line)}
+#ttl{font-size:20px;text-shadow:0 0 12px #39ff1466}
+#out{font-weight:800;color:#fff;font-size:17px}.guide summary{cursor:pointer;font-weight:800;color:var(--g);font-size:16px}.guide ol{padding-left:20px;margin:10px 0 0}.guide li{margin:7px 0}.quick{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.qc{padding:6px 11px;font-size:12px;min-height:0;border-radius:20px}
+@media(min-width:760px){.w{padding:18px 20px}.hd{margin:-18px -20px 18px;padding:14px 20px}h1{font-size:30px}}
+</style></head><body><div class="w">
+<div class="top hd"><div style="display:flex;gap:12px;align-items:center"><span class="logo">TZ</span><div><h1>TUXSAR TOOLZ 🔥</h1><div class="sub">Free Fire ID Sales Description Generator • Pro</div></div></div>
+<div style="display:flex;gap:8px;flex:1 1 260px;max-width:360px"><input id="q" type="number" min="1" max="100" placeholder="Search account number"><button id="go" class="pri">Go</button></div></div>
+
+<div id="home">
+<details class="card guide"><summary>📘 Full guide: how to use & publish</summary><ol><li><b>Add account:</b> tap ➕ NEW ACCOUNT.</li><li><b>Upload:</b> tap the green box and pick up to 100 screenshots (JPG/PNG/WEBP).</li><li><b>Analyze:</b> tap 🤖 ANALYZE. Allow Claude access when asked. Fix or add items by typing them.</li><li><b>Contact:</b> fill your name, number and link once in step 3. They are remembered for every account.</li><li><b>Price:</b> type the price, add an exchange line if you want, tap 🔄 Regenerate.</li><li><b>Copy:</b> tap 📋 COPY DESCRIPTION, then paste in WhatsApp/Telegram. Tap 💾 Save account to keep it.</li><li><b>Publish this website:</b> open the page in Claude, tap <b>Share</b>, choose who can open it and copy the link. Until you share, only you can see it.</li><li><b>Use like an app:</b> open the link in Chrome, tap ⋮ then <b>Add to Home screen</b>.</li><li><b>Good to know:</b> accounts and photos are saved in this browser on this device only, so they do not appear on other phones. AI analysis needs a signed-in Claude user. Others can still type items manually.</li></ol></details><div class="card"><b>👋 How to use:</b> <span class="sub">1) Tap ➕ NEW ACCOUNT. 2) Upload screenshots. 3) Tap <b>Analyze</b>. 4) Edit, then tap <b>COPY DESCRIPTION</b>.</span>
+<div class="st" id="stats"></div></div>
+<button id="newacc" class="pri big" style="margin:0 0 12px">➕ NEW ACCOUNT</button><div class="grid" id="grid"></div></div>
+
+<div id="ed" class="hide">
+<div class="top"><button id="back">⬅ All accounts</button><h2 id="ttl" style="margin:0;color:var(--g)"></h2><span></span></div>
+<div class="card"><h3>📸 1. Screenshots</h3>
+<label class="drop" id="drop" for="file" style="display:block">📤 Tap here to upload screenshots<br><small>JPG, PNG, WEBP • up to 100 photos per account</small></label>
+<input id="file" type="file" accept="image/*" multiple class="vh">
+<input id="rep" type="file" accept="image/*" class="vh">
+<div class="bar" id="bar"><i></i></div><div class="st" id="msg"></div>
+<div class="thumbs" id="thumbs"></div>
+<button id="an" class="pri big">🤖 ANALYZE SCREENSHOTS (AI)</button>
+<div class="st" id="anmsg">AI reads only what is visible. Always double-check results below.</div></div>
+
+<div class="card"><h3>🧾 2. Detected / manual items</h3>
+<div class="row"><input id="lv" placeholder="Account level (e.g. 79)"><input id="pr" placeholder="Prime level (e.g. 8)"><input id="vt" placeholder="Vault collection (e.g. 706+)"></div>
+<div id="cats"></div></div>
+
+<div class="card"><h3>📞 3. Your contact (saved once for all accounts)</h3><div class="row"><input id="sn" placeholder="Your name e.g. KING XS"><input id="sp" type="tel" placeholder="Phone / WhatsApp number"></div><div class="row"><input id="sl" placeholder="Link (empty = auto wa.me link from number)"></div><label class="sub"><input id="sdm" type="checkbox" checked style="width:auto"> 📩 Add "DM TO BUY" contact section</label></div><div class="card"><h3>✍️ 4. Description</h3>
+<div class="row"><input id="hd" placeholder="Custom heading (optional)"><input id="pc" placeholder="Price e.g. 29,999"></div><div class="row"><input id="ex" placeholder="Exchange line (optional) e.g. Exchange available for 30K+ worth IDs"></div>
+<label class="sub"><input id="fx" type="checkbox" style="width:auto"> Show [ FIXED PRICE ]</label><br><label class="sub"><input id="bd" type="checkbox" checked style="width:auto"> 𝗝𝗼𝗹𝗱 Bold font when copied (WhatsApp/Telegram)</label><div class="sub">Quick add lines:</div><div class="quick" id="qk"></div>
+<div class="row"><input id="nl" placeholder="Add a line (emoji added automatically)"><button id="addl">➕ Add line</button></div>
+<div class="row"><button id="regen">🔄 Regenerate</button><button id="emo">😀 Auto-add emojis</button><button id="clr" class="dng">🧹 Clear</button></div>
+<textarea id="out" placeholder="Your description appears here. You can edit anything."></textarea>
+<button id="copy" class="pri big">📋 COPY DESCRIPTION</button>
+<div class="row"><button id="txt">⬇ Download TXT</button><button id="save" class="pri">💾 Save account</button><button id="del" class="dng">🗑 Delete account</button></div></div>
+</div>
+<div class="sub" style="text-align:center;margin:20px">© TUXSAR TOOLZ 🔥 • Your data is saved privately in this browser 🔒</div>
+</div><div id="toast"></div>
+<script>
+const CATS=[['bundles','🌟','BUNDLES & OUTFITS'],['guns','💎','RARE GUN SKINS'],['evo','🔥','EVO GUN SKINS'],['emotes','💫','EMOTES'],['rare','👑','RARE COLLECTIONS'],['vehicles','🚗','VEHICLE SKINS'],['other','⚡','OTHER RARE ITEMS']];
+const $=id=>document.getElementById(id);
+let DB=null,ACC={},cur=null,mem=false,sample=null,dl=null;
+const blank=n=>({n,imgs:[],d:{level:'',prime:'',vault:'',bundles:[],guns:[],evo:[],emotes:[],rare:[],vehicles:[],other:[]},heading:'',price:'',fixed:true,text:'',saved:false});
+function toast(m,e){const t=$('toast');t.textContent=m;t.className=e?'err':'';t.style.display='block';clearTimeout(toast.i);toast.i=setTimeout(()=>t.style.display='none',3200)}
+// storage
+function open(){return new Promise(r=>{try{const q=indexedDB.open('tuxsar',1);q.onupgradeneeded=()=>q.result.createObjectStore('a',{keyPath:'n'});q.onsuccess=()=>{DB=q.result;r()};q.onerror=()=>{mem=true;r()}}catch(e){mem=true;r()}})}
+function loadAll(){return new Promise(r=>{if(!DB)return r();try{const q=DB.transaction('a').objectStore('a').getAll();q.onsuccess=()=>{q.result.forEach(a=>ACC[a.n]=a);r()};q.onerror=()=>r()}catch(e){r()}})}
+function put(a){ACC[a.n]=a;if(!DB)return;try{DB.transaction('a','readwrite').objectStore('a').put(a)}catch(e){toast('Could not save to browser storage',1)}}
+function rm(n){delete ACC[n];if(DB)try{DB.transaction('a','readwrite').objectStore('a').delete(n)}catch(e){}}
+// home
+function grid(){let s=0,p=0;$('grid').innerHTML='';for(const n of Object.keys(ACC).map(Number).sort((x,y)=>x-y)){const a=ACC[n],d=document.createElement('div');d.className='ac'+(a.saved?' sv':' has');p+=a.imgs.length;if(a.saved)s++;d.innerHTML=`<b>Account ${n}</b><small>${a.imgs.length} 📸${a.saved?' ✅':''}</small>`;d.onclick=()=>openAcc(n);$('grid').append(d)}$('stats').textContent=`${s} saved descriptions • ${p} screenshots stored`}
+function openAcc(n){if(!n||n<1)return toast('Enter a valid account number',1);cur=ACC[n]||blank(n);$('home').classList.add('hide');$('ed').classList.remove('hide');$('ttl').textContent='Account '+n;fill();scrollTo(0,0)}
+function fill(){loadSeller();const d=cur.d;$('lv').value=d.level;$('pr').value=d.prime;$('vt').value=d.vault;$('hd').value=cur.heading;$('pc').value=cur.price;$('ex').value=cur.ex||'';$('fx').checked=cur.fixed;$('out').value=cur.text;thumbs();cats()}
+function persist(saved){if($('ex'))cur.ex=$('ex').value;cur.d.level=$('lv').value.trim();cur.d.prime=$('pr').value.trim();cur.d.vault=$('vt').value.trim();cur.heading=$('hd').value;cur.price=$('pc').value.trim();cur.fixed=$('fx').checked;cur.text=$('out').value;if(saved)cur.saved=true;if(cur.imgs.length||cur.text||cur.saved||Object.values(cur.d).some(v=>v&&v.length))put(cur)}
+// images
+function compress(f){return new Promise((res,rej)=>{const u=URL.createObjectURL(f),i=new Image();i.onerror=()=>{URL.revokeObjectURL(u);rej(new Error('bad image'))};i.onload=()=>{const k=Math.min(1,1280/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.78))};i.src=u})}
+async function addFiles(fs,idx){const ok=['image/jpeg','image/png','image/webp'],room=100-cur.imgs.length+(idx!=null?1:0);let list=[...fs];if(idx==null&&list.length>room){toast('Max 100 photos. Only '+Math.max(room,0)+' more allowed.',1);list=list.slice(0,Math.max(room,0))}if(!list.length)return;const bar=$('bar');bar.style.display='block';let n=0,bad=0;
+for(const f of list){if(!ok.includes(f.type)){bad++;toast(f.name+': only JPG, PNG, WEBP allowed',1);continue}
+try{const u=await compress(f);if(idx!=null)cur.imgs[idx]=u;else cur.imgs.push(u);n++}catch(e){bad++;toast('Could not read '+f.name,1)}
+bar.firstElementChild.style.width=((n+bad)/list.length*100)+'%';$('msg').textContent=`Uploading ${n+bad}/${list.length}...`}
+persist();thumbs();$('msg').textContent=n?`✅ ${n} photo(s) uploaded & saved`:'';setTimeout(()=>bar.style.display='none',700);bar.firstElementChild.style.width='0'}
+let repIdx=0;
+function thumbs(){const t=$('thumbs');t.innerHTML='';cur.imgs.forEach((u,i)=>{const d=document.createElement('div');d.className='th';d.innerHTML=`<img src="${u}"><div><label data-r="${i}" for="rep">🔁 Replace</label><button data-x="${i}">✖ Remove</button></div>`;t.append(d)})}
+$('thumbs').onclick=e=>{const b=e.target.closest('button,label');if(!b)return;if(b.dataset.x!=null){cur.imgs.splice(+b.dataset.x,1);persist();thumbs()}else{repIdx=+b.dataset.r}};
+
+$('file').onchange=e=>{addFiles(e.target.files);e.target.value=''};
+$('rep').onchange=e=>{addFiles(e.target.files,repIdx);e.target.value=''};
+['dragover','drop'].forEach(v=>$('drop').addEventListener(v,e=>{e.preventDefault();if(v=='drop')addFiles(e.dataTransfer.files)}));
+// items
+function cats(){const c=$('cats');c.innerHTML='';CATS.forEach(([k,e,t])=>{const w=document.createElement('div');w.innerHTML=`<div class="sub">${e} ${t}</div><div class="chips"></div><input placeholder="Type item name + Enter">`;const ch=w.querySelector('.chips');cur.d[k].forEach((v,i)=>{const s=document.createElement('div');s.className='chip';s.textContent=v;const x=document.createElement('span');x.textContent='✖';x.onclick=()=>{cur.d[k].splice(i,1);persist();cats()};s.append(x);ch.append(s)});w.querySelector('input').onkeydown=ev=>{if(ev.key=='Enter'&&ev.target.value.trim()){cur.d[k].push(ev.target.value.trim());persist();cats()}};c.append(w)})}
+// AI
+async function ai(){if(!cur.imgs.length)return toast('Upload screenshots first',1);
+if(!sample)return toast('AI is not available here. Please enter items manually below.',1);
+const lim=await sample.limits().catch(()=>null);if(!lim||!lim.images)return toast('AI image analysis unavailable. Use manual entry.',1);
+const per=Math.min(lim.images.maxCount||6,6),btn=$('an');btn.disabled=true;
+const P=`You analyze Free Fire (Garena) account screenshots. Only report items you can CLEARLY SEE in these images. Never guess or invent. If unsure, leave it out. Reply ONLY JSON: {"level":"account level number or empty","prime":"prime level number or empty","vault":"vault collection number or empty","bundles":[],"guns":[],"evo":["name + level e.g. Evo M1887 Lv.7"],"emotes":[],"rare":[],"vehicles":[],"other":[]} Use short item names.`;
+try{let all=[];for(let i=0;i<cur.imgs.length;i+=per){$('anmsg').textContent=`Analyzing images ${i+1}-${Math.min(i+per,cur.imgs.length)} of ${cur.imgs.length}...`;
+const bl=await Promise.all(cur.imgs.slice(i,i+per).map(u=>fetch(u).then(r=>r.blob())));
+all.push(await sample.json(P,{images:bl,cache:false,modelTier:'default'}))}
+const d=cur.d;all.forEach(r=>{if(!r)return;['level','prime','vault'].forEach(k=>{if(r[k]&&!d[k])d[k]=String(r[k])});CATS.forEach(([k])=>(r[k]||[]).forEach(v=>{v=String(v).trim();if(v&&!d[k].some(x=>x.toLowerCase()==v.toLowerCase()))d[k].push(v)}))});
+persist();fill();build();$('anmsg').textContent='✅ Done! Check the items below and fix anything wrong.';toast('Analysis complete ✅')}
+catch(e){const c=e&&e.code;$('anmsg').textContent='';toast(c=='not_granted'?'AI permission was denied. Use manual entry.':c=='rate_limited'?'Too many requests, wait a minute.':'Analysis failed: '+(e.message||'error')+'. Try fewer screenshots or enter manually.',1)}
+btn.disabled=false}
+$('an').onclick=ai;
+// description
+function build(){persist();const d=cur.d,L=[cur.heading.trim()||'👀 CHECK OUT ✅ ALL SCREENSHOTS'];
+if(d.prime)L.push('⚜️ PRIME LEVEL '+d.prime);if(d.level)L.push('✨ '+d.level+' ACCOUNT LEVEL');if(d.vault)L.push('🔥 '+d.vault+(/\+$/.test(d.vault)?'':'+')+' VAULT COLLECTION');
+CATS.forEach(([k,e])=>d[k].forEach(v=>L.push(`${e} ${v.toUpperCase()}`)));
+L.push('⚡ FULLY WORTH ID INTERESTED PEOPLE DM FAST ⤵️');if(cur.price)L.push('💵 PRICE : ₹ '+cur.price.replace(/^₹\s*/,'')+' -/ ONLY');if(cur.fixed)L.push('[ FIXED PRICE ]');L.push('GRAB YOUR OFFER ❤️‍🔥');if(($('ex').value||'').trim())L.push('♻️ '+$('ex').value.trim().toUpperCase());const ct=contact();if(ct)L.push(ct);
+cur.text=L.join('\n\n');$('out').value=cur.text}
+const EM=[[/incubator/i,'💥'],[/diamond/i,'💎'],[/prime/i,'👑'],[/level/i,'✨'],[/vault/i,'🔥'],[/evo/i,'🔥'],[/emote/i,'💫'],[/gun|skin/i,'💎'],[/bundle|outfit/i,'🌟'],[/pass|elite/i,'❤️'],[/price|₹|rs/i,'💸'],[/bike|car|vehicle/i,'🚗'],[/worth|deal|offer/i,'⚡']];
+const hasEmo=s=>/\p{Extended_Pictographic}/u.test(s)||/^\[/.test(s);
+function emoLine(s){s=s.trim();if(!s||hasEmo(s))return s;const m=EM.find(x=>x[0].test(s));return (m?m[1]:'✅')+' '+s}
+$('emo').onclick=()=>{$('out').value=$('out').value.split('\n').map(emoLine).join('\n');persist();toast('Emojis added ✨')};
+$('addl').onclick=()=>{const v=$('nl').value.trim();if(!v)return toast('Type a line first',1);const o=$('out');const lines=o.value.split('\n\n');let at=lines.findIndex(x=>/FULLY WORTH/.test(x));if(at<1)at=Math.max(lines.length-3,1);lines.splice(at,0,emoLine(v).toUpperCase());o.value=lines.join('\n\n');$('nl').value='';persist();toast('Line added')};
+$('regen').onclick=()=>{build();toast('Regenerated 🔄')};
+$('clr').onclick=()=>{if(confirm('Clear the description text?')){$('out').value='';persist()}};
+$('copy').onclick=async()=>{const t=$('out').value;if(!t.trim())return toast('Nothing to copy. Tap Regenerate first.',1);persist();try{await navigator.clipboard.writeText(fmt(t));toast('✅ Copied! Paste it in your store')}catch(e){const o=$('out');o.select();o.setSelectionRange(0,99999);try{document.execCommand('copy')?toast('✅ Copied!'):toast('Text selected — press Copy on your keyboard',1)}catch(x){toast('Text selected — press Copy manually',1)}}};
+$('txt').onclick=async()=>{const t=$('out').value;if(!t.trim())return toast('Nothing to download',1);if(!dl)return toast('Download not available here. Use Copy instead.',1);try{await dl.save({filename:`account-${cur.n}.txt`,data:fmt(t)});toast('Saved ✅')}catch(e){if(!e||e.code!='declined')toast('Download failed. Use Copy instead.',1)}};
+$('save').onclick=()=>{persist(true);toast('💾 Account '+cur.n+' saved')};
+$('del').onclick=()=>{if(confirm('Delete everything for Account '+cur.n+'?')){rm(cur.n);cur=null;$('ed').classList.add('hide');$('home').classList.remove('hide');grid();toast('Account deleted')}};
+['lv','pr','vt','hd','pc','fx','out'].forEach(i=>$(i).addEventListener('change',()=>persist()));
+function home(){persist();cur=null;$('ed').classList.add('hide');$('home').classList.remove('hide');grid()}
+$('back').onclick=home;
+const NL=String.fromCharCode(10);
+function loadSeller(){try{const s=JSON.parse(localStorage.getItem('tz_seller')||'{}');$('sn').value=s.n||'';$('sp').value=s.p||'';$('sl').value=s.l||'';$('sdm').checked=s.d!==false;$('bd').checked=s.b!==false}catch(e){}}
+function saveSeller(){try{localStorage.setItem('tz_seller',JSON.stringify({n:$('sn').value,p:$('sp').value,l:$('sl').value,d:$('sdm').checked,b:$('bd').checked}))}catch(e){}}
+['sn','sp','sl','sdm','bd'].forEach(i=>$(i).addEventListener('input',saveSeller));
+function contact(){if(!$('sdm').checked)return '';const n=$('sn').value.trim(),p=$('sp').value.trim(),dg=p.replace(/\D/g,'');let l=$('sl').value.trim();if(!l&&dg)l='wa.me/'+(dg.length==10?'91':'')+dg;if(!n&&!p&&!l)return '';const A=['📩 DM TO BUY'];if(n)A.push(n.toUpperCase()+' ✅');if(p)A.push(p);if(l)A.push(l);return A.join(NL)}
+function fmt(t){if(!$('bd').checked)return t;return t.split(NL).map(x=>/wa\.me|http|^[+\d\s-]{8,}$/.test(x)?x:[...x].map(c=>{const k=c.codePointAt(0);return k>=65&&k<=90?String.fromCodePoint(120276+k-65):k>=97&&k<=122?String.fromCodePoint(120302+k-97):k>=48&&k<=57?String.fromCodePoint(120812+k-48):c}).join('')).join(NL)}
+['BEST VAULT COLLECTION','OLD ELITE PASSES','TOP INCUBATOR BUNDLES','TOP INCUBATOR SKINS','OLD & RARE EMOTES COLLECTION','1,400+ DIAMONDS CLAIMABLE'].forEach(v=>{const b=document.createElement('button');b.className='qc';b.textContent='+ '+v;b.onclick=()=>{$('nl').value=v;$('addl').click()};$('qk').append(b)});
+$('newacc').onclick=()=>{let n=1;while(ACC[n])n++;put(blank(n));openAcc(n)};
+$('go').onclick=()=>{const n=parseInt($('q').value);if(cur)persist();if(!ACC[n])return toast('Account '+n+' not found',1);openAcc(n)};$('q').onkeydown=e=>{if(e.key=='Enter')$('go').click()};
+(async()=>{await open();await loadAll();grid();if(mem)toast('Storage blocked: data will not persist',1);
+try{if(window.claude){sample=await claude.use('sample');dl=await claude.use('downloads')}}catch(e){}
+if(!sample)$('anmsg').textContent='AI unavailable in this view — add items manually below.'})();
+</script></body></html>
